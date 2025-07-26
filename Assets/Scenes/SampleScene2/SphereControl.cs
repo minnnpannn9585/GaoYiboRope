@@ -18,6 +18,14 @@ public class SphereControl : MonoBehaviour
     [Tooltip("选择使用鼠标左键还是右键来控制")]
     public MouseButton controlButton = MouseButton.LeftButton;
 
+    [Header("位置控制设置")]
+    [Tooltip("鼠标移动的敏感度")]
+    public float mouseSensitivity = 0.01f;
+
+    // 记录开始holding时的位置和鼠标位置
+    private Vector3 initialPosition;
+    private Vector3 initialMousePosition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +42,9 @@ public class SphereControl : MonoBehaviour
         if (Input.GetMouseButtonDown(mouseButtonIndex))
         {
             isHolding = true;
+            // 记录开始holding时的物体位置和鼠标位置
+            initialPosition = transform.position;
+            initialMousePosition = Input.mousePosition;
         }
         //如果设置的鼠标键松开
         if (Input.GetMouseButtonUp(mouseButtonIndex))
@@ -44,10 +55,28 @@ public class SphereControl : MonoBehaviour
 
         if (isHolding)
         {
-            
+            rb.useGravity = false;
+            // 计算鼠标移动的偏移量
+            Vector3 currentMousePosition = Input.mousePosition;
+            Vector3 mouseDelta = currentMousePosition - initialMousePosition;
+
+            // 将鼠标的2D移动转换为3D世界坐标的移动
+            // 这里假设鼠标的X轴对应世界的X轴，Y轴对应世界的Y轴
+            Vector3 worldDelta = new Vector3(
+                mouseDelta.x * mouseSensitivity,
+                mouseDelta.y * mouseSensitivity,
+                0f // Z轴不变
+            );
+
+            // 计算目标位置 = 初始位置 + 鼠标移动偏移
+            Vector3 targetPosition = initialPosition + worldDelta;
+
+            // 使用MovePosition方法移动刚体
+            rb.MovePosition(targetPosition); 
         }
         else
         {
+            rb.useGravity = true;
             // add a force to the sphere
             rb.AddForce(Vector3.forward * force);
         }
