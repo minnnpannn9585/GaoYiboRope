@@ -21,6 +21,8 @@ public class SphereControl : MonoBehaviour
     [Header("位置控制设置")]
     [Tooltip("鼠标移动的敏感度")]
     public float mouseSensitivity = 0.01f;
+    [Tooltip("推向目标位置的力的大小")]
+    public float moveForce = 10f;
 
     // 记录开始holding时的位置和鼠标位置
     private Vector3 initialPosition;
@@ -45,10 +47,12 @@ public class SphereControl : MonoBehaviour
             // 记录开始holding时的物体位置和鼠标位置
             initialPosition = transform.position;
             initialMousePosition = Input.mousePosition;
+            rb.drag = 22f;
         }
         //如果设置的鼠标键松开
         if (Input.GetMouseButtonUp(mouseButtonIndex))
         {
+            rb.drag = 0f;
             StartCoroutine(TemporaryKinematic());
             isHolding = false;
             // 启动协程：短暂设置为kinematic
@@ -80,8 +84,11 @@ public class SphereControl : MonoBehaviour
             // 计算目标位置 = 初始位置 + 鼠标移动偏移
             Vector3 targetPosition = initialPosition + worldDelta;
 
-            // 使用MovePosition方法移动刚体
-            rb.MovePosition(targetPosition);
+            // 计算从当前位置到目标位置的方向和距离
+            Vector3 direction = targetPosition - transform.position;
+
+            // 施加力推向目标位置
+            rb.AddForce(direction * moveForce);
         }
         else
         {
