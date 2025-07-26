@@ -52,9 +52,15 @@ public class SphereControl : MonoBehaviour
             StartCoroutine(TemporaryKinematic());
             isHolding = false;
             // 启动协程：短暂设置为kinematic
-            
+
         }
 
+
+    }
+
+
+    void FixedUpdate()
+    {
 
         if (isHolding)
         {
@@ -75,7 +81,7 @@ public class SphereControl : MonoBehaviour
             Vector3 targetPosition = initialPosition + worldDelta;
 
             // 使用MovePosition方法移动刚体
-            rb.MovePosition(targetPosition); 
+            rb.MovePosition(targetPosition);
         }
         else
         {
