@@ -49,7 +49,10 @@ public class SphereControl : MonoBehaviour
         //如果设置的鼠标键松开
         if (Input.GetMouseButtonUp(mouseButtonIndex))
         {
+            StartCoroutine(TemporaryKinematic());
             isHolding = false;
+            // 启动协程：短暂设置为kinematic
+            
         }
 
 
@@ -80,5 +83,18 @@ public class SphereControl : MonoBehaviour
             // add a force to the sphere
             rb.AddForce(Vector3.forward * force);
         }
+    }
+
+    // 协程：短暂设置刚体为kinematic
+    private IEnumerator TemporaryKinematic()
+    {
+        // 设置为kinematic（静态运动学）
+        rb.isKinematic = true;
+
+        // 等待0.1秒
+        yield return new WaitForSeconds(0.1f);
+
+        // 恢复为非kinematic
+        rb.isKinematic = false;
     }
 }
