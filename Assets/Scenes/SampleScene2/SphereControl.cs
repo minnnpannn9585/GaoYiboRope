@@ -28,10 +28,6 @@ public class SphereControl : MonoBehaviour
     private Vector3 initialPosition;
     private Vector3 initialMousePosition;
 
-    // 新增变量
-    public bool canControl = true; // 是否允许鼠标控制
-    private Coroutine countdownCoroutine;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -44,22 +40,17 @@ public class SphereControl : MonoBehaviour
         // 根据设置的按键类型来检测鼠标输入
         int mouseButtonIndex = (controlButton == MouseButton.LeftButton) ? 0 : 1;
 
-        // 鼠标按下且允许控制时，启动倒计时
-        if (Input.GetMouseButtonDown(mouseButtonIndex) && canControl)
+        //如果设置的鼠标键按下
+        if (Input.GetMouseButtonDown(mouseButtonIndex))
         {
             isHolding = true;
             // 记录开始holding时的物体位置和鼠标位置
             initialPosition = transform.position;
             initialMousePosition = Input.mousePosition;
             rb.drag = 22f;
-
-            // 启动倒计时协程
-            if (countdownCoroutine != null)
-                StopCoroutine(countdownCoroutine);
-            countdownCoroutine = StartCoroutine(HoldCountdown());
         }
-
-        if (Input.GetMouseButtonUp(mouseButtonIndex) && isHolding)
+        //如果设置的鼠标键松开
+        if (Input.GetMouseButtonUp(mouseButtonIndex))
         {
             rb.drag = 0f;
             StartCoroutine(TemporaryKinematic());
@@ -75,7 +66,7 @@ public class SphereControl : MonoBehaviour
     void FixedUpdate()
     {
 
-        if (isHolding && canControl)
+        if (isHolding)
         {
             rb.useGravity = false;
             // 计算鼠标移动的偏移量
@@ -104,23 +95,6 @@ public class SphereControl : MonoBehaviour
             rb.useGravity = true;
             // add a force to the sphere
             rb.AddForce(Vector3.forward * force);
-        }
-    }
-
-    // 倒计时协程
-    private IEnumerator HoldCountdown()
-    {
-        yield return new WaitForSeconds(2f);
-        canControl = false;
-        //isHolding = false;
-    }
-
-    // 恢复鼠标控制
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.CompareTag("Grabable"))
-        {
-            canControl = true;
         }
     }
 

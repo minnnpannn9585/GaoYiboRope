@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class CanControlImage : MonoBehaviour
 {
-    public SphereControl sc;
+    // public SphereControl sc;
 
-    private void Update()
-    {
-        if(sc.canControl == false)
-        {
-            this.GetComponent<Image>().color = Color.red;
-        }
-        else
-        {
-            this.GetComponent<Image>().color = Color.green;
-        }
-    }
+    // private void Update()
+    // {
+    //     if(sc.canControl == false)
+    //     {
+    //         this.GetComponent<Image>().color = Color.red;
+    //     }
+    //     else
+    //     {
+    //         this.GetComponent<Image>().color = Color.green;
+    //     }
+    // }
 }
