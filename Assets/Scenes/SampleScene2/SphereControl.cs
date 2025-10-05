@@ -40,8 +40,22 @@ public class SphereControl : MonoBehaviour
         // 根据设置的按键类型来检测鼠标输入
         int mouseButtonIndex = (controlButton == MouseButton.LeftButton) ? 0 : 1;
 
+        //如果左右键都抬起
+        if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1))
+        {
+            Debug.Log("左右键都抬起");
+            // 当左右键都抬起时，恢复刚体到基础状态
+            if (isHolding)
+            {
+                rb.drag = 0f;
+                rb.useGravity = true;
+                rb.isKinematic = false;
+                isHolding = false;
+            }
+
+        }
         //如果设置的鼠标键按下
-        if (Input.GetMouseButtonDown(mouseButtonIndex))
+        else if (Input.GetMouseButtonUp(mouseButtonIndex))
         {
             isHolding = true;
             // 记录开始holding时的物体位置和鼠标位置
@@ -50,14 +64,14 @@ public class SphereControl : MonoBehaviour
             rb.drag = 22f;
         }
         //如果设置的鼠标键松开
-        if (Input.GetMouseButtonUp(mouseButtonIndex))
+        else if (Input.GetMouseButtonDown(mouseButtonIndex))
         {
             rb.drag = 0f;
             StartCoroutine(TemporaryKinematic());
             isHolding = false;
-            // 启动协程：短暂设置为kinematic
-
         }
+
+
 
 
     }
