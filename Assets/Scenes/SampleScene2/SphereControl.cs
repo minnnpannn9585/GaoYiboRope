@@ -12,6 +12,7 @@ public class SphereControl : MonoBehaviour
 {
     private Rigidbody rb;
     public bool isHolding = false;
+    public bool isAllRelease = false;
     public float force; // 向前的力
 
     [Header("鼠标控制设置")]
@@ -44,20 +45,18 @@ public class SphereControl : MonoBehaviour
         if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1))
         {
             Debug.Log("左右键都抬起");
-            // 当左右键都抬起时，恢复刚体到基础状态
-            if (isHolding)
-            {
-                rb.drag = 0f;
-                rb.useGravity = true;
-                rb.isKinematic = false;
-                isHolding = false;
-            }
-
+            // 当左右键都抬起时，恢复刚体到基础状态,且不施加向前的力
+            isHolding = false;
+            rb.drag = 0f;
+            rb.useGravity = true;
+            rb.isKinematic = false;
+            isAllRelease = true;
         }
         //如果设置的鼠标键按下
         else if (Input.GetMouseButtonUp(mouseButtonIndex))
         {
             isHolding = true;
+            isAllRelease = false;
             // 记录开始holding时的物体位置和鼠标位置
             initialPosition = transform.position;
             initialMousePosition = Input.mousePosition;
@@ -69,6 +68,7 @@ public class SphereControl : MonoBehaviour
             rb.drag = 0f;
             StartCoroutine(TemporaryKinematic());
             isHolding = false;
+            isAllRelease = false;
         }
 
 
@@ -106,6 +106,12 @@ public class SphereControl : MonoBehaviour
         }
         else
         {
+            if (isAllRelease)
+            {
+                rb.useGravity = true;
+
+                return;
+            }
             rb.useGravity = true;
             // add a force to the sphere
             rb.AddForce(Vector3.forward * force);
