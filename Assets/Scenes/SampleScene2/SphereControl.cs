@@ -46,34 +46,51 @@ public class SphereControl : MonoBehaviour
         // 根据设置的按键类型来检测鼠标输入
         int mouseButtonIndex = (controlButton == MouseButton.LeftButton) ? 0 : 1;
         //如果左右键都抬起
-        if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1))
+        // 条件：当且仅当指定的控制键被按下，且另一个键没有被按下时，才进入 holding 状态
+        bool isOnlyControlKeyDown = Input.GetMouseButton(mouseButtonIndex) && !Input.GetMouseButton(1 - mouseButtonIndex);
+
+        if (isOnlyControlKeyDown)
         {
-            Debug.Log("左右键都抬起");
-            // 当左右键都抬起时，恢复刚体到基础状态,且不施加向前的力
-            isHolding = false;
-            rb.drag = 0f;
-            rb.useGravity = true;
-            rb.isKinematic = false;
-            isAllRelease = true;
-        }
-        //如果设置的鼠标键按下
-        else if (Input.GetMouseButtonUp(mouseButtonIndex))
-        {
+            // 检查是否是从“非按住”状态刚刚切换过来
+            if (!isHolding)
+            {
+                Debug.Log("设置键按下 (Only)");
+                // 记录开始holding时的物体位置和鼠标位置，重置累计偏移量
+                initialPosition = transform.position;
+                initialMousePosition = Input.mousePosition;
+                accumulatedMouseDelta = Vector3.zero;
+            }
+
             isHolding = true;
             isAllRelease = false;
-            // 记录开始holding时的物体位置和鼠标位置，重置累计偏移量
-            initialPosition = transform.position;
-            initialMousePosition = Input.mousePosition;
-            accumulatedMouseDelta = Vector3.zero;
             rb.drag = 22f;
         }
-        //如果设置的鼠标键松开
-        else if (Input.GetMouseButtonDown(mouseButtonIndex))
+        // 其他所有情况（两个都松开、两个都按下、只按下了非控制键）
+        else
         {
-            rb.drag = 0f;
-            StartCoroutine(TemporaryKinematic());
+            // 检查是否是从“按住”状态刚刚切换过来
+            if (isHolding)
+            {
+                Debug.Log("设置键抬起 或 其他按键冲突");
+                rb.drag = 0f;
+                StartCoroutine(TemporaryKinematic());
+            }
+
             isHolding = false;
-            isAllRelease = false;
+            
+            // 检查是否两个键都松开了
+            if (!Input.GetMouseButton(0) && !Input.GetMouseButton(1))
+            {
+                Debug.Log("左右键都抬起");
+                isAllRelease = true; // 进入完全自由落体状态
+            }
+            else // 两个都按下 或 只按了另一个键
+            {
+                if(Input.GetMouseButton(0) && Input.GetMouseButton(1))
+                    Debug.Log("左右键都按下");
+                
+                isAllRelease = false; // 进入施加向前力的状态
+            }
         }
 
 
@@ -168,7 +185,7 @@ public class SphereControl : MonoBehaviour
         // 设置为kinematic（静态运动学）
         rb.isKinematic = true;
         // 等待0.1秒
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         // 恢复为非kinematic
         rb.isKinematic = false;
     }
