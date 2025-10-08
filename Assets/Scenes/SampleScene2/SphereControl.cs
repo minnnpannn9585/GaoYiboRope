@@ -102,69 +102,56 @@ public class SphereControl : MonoBehaviour
         if (isHolding)
         {
             rb.useGravity = false;
-            // 获取鼠标增量输入 - 使用更可靠的方法
+
+            // 获取鼠标增量输入
             Vector3 mouseDelta = Vector3.zero;
-            
             if (Cursor.lockState == CursorLockMode.Locked)
             {
-                // 当鼠标锁定时，使用GetAxis获取增量（FPS风格）
                 float mouseX = Input.GetAxis("Mouse X");
                 float mouseY = Input.GetAxis("Mouse Y");
-                
-                // 调试输出鼠标输入值
-                if (Mathf.Abs(mouseX) > 0.01f || Mathf.Abs(mouseY) > 0.01f)
-                {
-                    Debug.Log($"Mouse Input - X: {mouseX}, Y: {mouseY}");
-                }
-                
-                // 需要调整灵敏度以适应锁定模式
-                mouseDelta = new Vector3(
-                    mouseX * 30f,  // 大幅增加灵敏度
-                    mouseY * 30f,  // 大幅增加灵敏度
-                    0f
-                );
+                mouseDelta = new Vector3(mouseX * 30f, mouseY * 30f, 0f);
             }
             else
             {
-                // 当鼠标未锁定时，使用传统方法
                 Vector3 currentMousePosition = Input.mousePosition;
                 mouseDelta = currentMousePosition - initialMousePosition;
                 initialMousePosition = currentMousePosition;
             }
-            
+
             // 累计鼠标移动偏移量
             accumulatedMouseDelta += mouseDelta;
+
             // 将鼠标的2D移动转换为3D世界坐标的移动
             Vector3 worldDelta = new Vector3(
                 accumulatedMouseDelta.x * mouseSensitivity,
                 accumulatedMouseDelta.y * mouseSensitivity,
-                0f // Z轴不变
+                0f
             );
-            // 计算目标位置 = 初始位置 + 鼠标移动偏移
+
+            // 计算理想的目标位置
             Vector3 targetPosition = initialPosition + worldDelta;
-            // 检查与otherSphere的距离限制
+
+            // 限制目标位置，确保它不超过与 otherSphere 的最大距离
             if (otherSphere != null)
             {
-                float currentDistance = Vector3.Distance(transform.position, otherSphere.position);
-                float targetDistance = Vector3.Distance(targetPosition, otherSphere.position);
-                
-                // 如果目标位置会导致距离超过最大限制，则限制移动
-                if (targetDistance > maxDistance && targetDistance > currentDistance)
+                Vector3 directionFromOther = targetPosition - otherSphere.position;
+                float distance = directionFromOther.magnitude;
+
+                if (distance > maxDistance)
                 {
-                    // 计算允许的最大位置（在最大距离范围内）
-                    Vector3 directionToOther = (otherSphere.position - transform.position).normalized;
-                    Vector3 maxAllowedPosition = otherSphere.position - directionToOther * maxDistance;
+                    // 将目标位置拉回到最大距离的边界上
+                    targetPosition = otherSphere.position + directionFromOther.normalized * maxDistance;
                     
-                    // 重新计算目标位置，确保不超过最大距离
-                    targetPosition = maxAllowedPosition;
-                    
-                    // 重置累计偏移量以避免继续累积
+                    // 更新累计鼠标偏移量，以反映被限制后的位置
+                    // 这样，下一次计算就会从正确的位置开始，避免了“跳跃”
                     accumulatedMouseDelta = (targetPosition - initialPosition) / mouseSensitivity;
                 }
             }
-            // 计算从当前位置到目标位置的方向和距离
+
+            // 计算从当前位置到（可能被限制过的）目标位置的方向
             Vector3 direction = targetPosition - transform.position;
-            // 施加力推向目标位置
+            
+            // 施加力让小球追向目标位置
             rb.AddForce(direction * moveForce);
         }
         else
