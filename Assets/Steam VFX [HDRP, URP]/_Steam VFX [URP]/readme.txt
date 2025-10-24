@@ -1,0 +1,1 @@
+To install the package just simply drag this URP .unitypackage to your URP package.
