@@ -1,0 +1,292 @@
+fileFormatVersion: 2
+guid: c86e967617b1886479a6f9a48d2df768
+timeCreated: 1534620860
+licenseType: Store
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Abdomen
+    100002: Ant_body
+    100004: Ant_Legs
+    100006: //RootNode
+    100008: Antenna_L
+    100010: Antenna_R
+    100012: Bone001
+    100014: Bone001(mirrored)
+    100016: Bone002
+    100018: Bone002(mirrored)
+    100020: Bone003
+    100022: Bone003(mirrored)
+    100024: Bone004
+    100026: Bone004(mirrored)
+    100028: Bone005
+    100030: Bone005(mirrored)
+    100032: Bone006
+    100034: Bone006(mirrored)
+    100036: Bone007
+    100038: Bone007(mirrored)
+    100040: Bone008
+    100042: Bone008(mirrored)
+    100044: Bone009
+    100046: Bone009(mirrored)
+    100048: Bone010
+    100050: Bone010(mirrored)
+    100052: Bone011
+    100054: Bone011(mirrored)
+    100056: Bone012
+    100058: Bone012(mirrored)
+    100060: Bone014
+    100062: Bone014(mirrored)
+    100064: Bone015
+    100066: Bone015(mirrored)
+    100068: Bone016
+    100070: Bone016(mirrored)
+    100072: Bone017
+    100074: Bone017(mirrored)
+    100076: Bone018
+    100078: Bone018(mirrored)
+    100080: Bone019
+    100082: Bone019(mirrored)
+    100084: Bone021
+    100086: Bone023
+    100088: Bone023(mirrored)
+    100090: Bone024
+    100092: Bone024(mirrored)
+    100094: Bone025
+    100096: Bone025(mirrored)
+    100098: Bone026
+    100100: Bone026(mirrored)
+    100102: Bone027
+    100104: Bone027(mirrored)
+    100106: Bone029
+    100108: BoneAbdomen
+    100110: BoneAntenna022
+    100112: BoneAntenna022(mirrored)
+    100114: BoneHead
+    100116: BoneRoot
+    100118: BoneThorax
+    100120: Head
+    100122: IK Chain007
+    100124: IK Chain010
+    100126: IK Chain011
+    100128: IK Chain012
+    100130: IK Chain013
+    100132: IK Chain017
+    100134: IK Chain018
+    100136: IK Chain019
+    100138: IK Chain020
+    100140: IK Chain021
+    100142: Knee_L_1
+    100144: Knee_L_2
+    100146: Knee_L_3
+    100148: Knee_R_1
+    100150: Knee_R_2
+    100152: Knee_R_3
+    100154: Leg_L_1
+    100156: Leg_L_2
+    100158: Leg_L_3
+    100160: Leg_R_1
+    100162: Leg_R_2
+    100164: Leg_R_3
+    100166: Root
+    400000: Abdomen
+    400002: Ant_body
+    400004: Ant_Legs
+    400006: //RootNode
+    400008: Antenna_L
+    400010: Antenna_R
+    400012: Bone001
+    400014: Bone001(mirrored)
+    400016: Bone002
+    400018: Bone002(mirrored)
+    400020: Bone003
+    400022: Bone003(mirrored)
+    400024: Bone004
+    400026: Bone004(mirrored)
+    400028: Bone005
+    400030: Bone005(mirrored)
+    400032: Bone006
+    400034: Bone006(mirrored)
+    400036: Bone007
+    400038: Bone007(mirrored)
+    400040: Bone008
+    400042: Bone008(mirrored)
+    400044: Bone009
+    400046: Bone009(mirrored)
+    400048: Bone010
+    400050: Bone010(mirrored)
+    400052: Bone011
+    400054: Bone011(mirrored)
+    400056: Bone012
+    400058: Bone012(mirrored)
+    400060: Bone014
+    400062: Bone014(mirrored)
+    400064: Bone015
+    400066: Bone015(mirrored)
+    400068: Bone016
+    400070: Bone016(mirrored)
+    400072: Bone017
+    400074: Bone017(mirrored)
+    400076: Bone018
+    400078: Bone018(mirrored)
+    400080: Bone019
+    400082: Bone019(mirrored)
+    400084: Bone021
+    400086: Bone023
+    400088: Bone023(mirrored)
+    400090: Bone024
+    400092: Bone024(mirrored)
+    400094: Bone025
+    400096: Bone025(mirrored)
+    400098: Bone026
+    400100: Bone026(mirrored)
+    400102: Bone027
+    400104: Bone027(mirrored)
+    400106: Bone029
+    400108: BoneAbdomen
+    400110: BoneAntenna022
+    400112: BoneAntenna022(mirrored)
+    400114: BoneHead
+    400116: BoneRoot
+    400118: BoneThorax
+    400120: Head
+    400122: IK Chain007
+    400124: IK Chain010
+    400126: IK Chain011
+    400128: IK Chain012
+    400130: IK Chain013
+    400132: IK Chain017
+    400134: IK Chain018
+    400136: IK Chain019
+    400138: IK Chain020
+    400140: IK Chain021
+    400142: Knee_L_1
+    400144: Knee_L_2
+    400146: Knee_L_3
+    400148: Knee_R_1
+    400150: Knee_R_2
+    400152: Knee_R_3
+    400154: Leg_L_1
+    400156: Leg_L_2
+    400158: Leg_L_3
+    400160: Leg_R_1
+    400162: Leg_R_2
+    400164: Leg_R_3
+    400166: Root
+    4300000: Ant_body
+    4300002: Ant_Legs
+    7400000: walkForward
+    9500000: //RootNode
+    13700000: Ant_body
+    13700002: Ant_Legs
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: ant_mat
+    second: {fileID: 2100000, guid: b2daaa090c4e6f44388239054147fbfe, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: walkForward
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
