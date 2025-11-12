@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene2/StartScene.unity
     guid: 6e51e4d773239493e82adca074c07c1f
   - enabled: 1
-    path: Assets/Scenes/SampleScene2/StartComicScene.unity
-    guid: eee484d85dacb4a329d1a6177a6f2905
-  - enabled: 1
     path: Assets/Scenes/SampleScene2/SampleScene.unity
     guid: 480aa61125bacb948b5e09e22a3684b4
   m_configObjects: {}
