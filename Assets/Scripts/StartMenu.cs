@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
+    public GameObject comicCanvas;
     public void StartBtn()
     {
-        SceneManager.LoadScene(1);
+        comicCanvas.SetActive(true);
+        this.gameObject.SetActive(false);
     }
 }
