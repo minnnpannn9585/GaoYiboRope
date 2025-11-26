@@ -4,15 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 public enum MouseButton
 {
-    LeftButton,   // 左键
-    RightButton   // 右键
+    LeftButton,   
+    RightButton   
 }
 public class SphereControl : MonoBehaviour
 {
     private Rigidbody rb;
     public bool isHolding = false;
     public bool isAllRelease = false;
-    public float force; // 向前的力
+    public float force; 
     public Transform otherSphere;
     [Header("距离限制设置")]
     [Tooltip("最大允许距离")]
@@ -25,7 +25,6 @@ public class SphereControl : MonoBehaviour
     public float mouseSensitivity = 0.01f;
     [Tooltip("推向目标位置的力的大小")]
     public float moveForce = 10f;
-    // 记录开始holding时的位置
     private Vector3 initialPosition;
     // 记录开始holding时的鼠标位置（用于未锁定状态）
     private Vector3 initialMousePosition;

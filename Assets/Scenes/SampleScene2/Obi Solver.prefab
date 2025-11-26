@@ -100,7 +100,7 @@ MonoBehaviour:
   synchronousSpatialQueries: 0
   distanceConstraintParameters:
     evaluationOrder: 0
-    iterations: 20
+    iterations: 30
     SORFactor: 1
     enabled: 1
   bendingConstraintParameters:
