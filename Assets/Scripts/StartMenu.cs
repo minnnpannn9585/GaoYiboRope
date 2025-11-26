@@ -6,9 +6,12 @@ using UnityEngine.SceneManagement;
 public class StartMenu : MonoBehaviour
 {
     public GameObject comicCanvas;
+    public AudioSource btnClickSound;
     public void StartBtn()
     {
+        btnClickSound.Play();
         comicCanvas.SetActive(true);
         this.gameObject.SetActive(false);
+
     }
 }

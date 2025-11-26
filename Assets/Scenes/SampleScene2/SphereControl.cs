@@ -50,9 +50,11 @@ public class SphereControl : MonoBehaviour
 
         if (isOnlyControlKeyDown)
         {
+            GetComponent<AudioSource>().Play();
             // 检查是否是从“非按住”状态刚刚切换过来
             if (!isHolding)
             {
+                
                 Debug.Log("设置键按下 (Only)");
                 // 记录开始holding时的物体位置和鼠标位置，重置累计偏移量
                 initialPosition = transform.position;
@@ -85,7 +87,8 @@ public class SphereControl : MonoBehaviour
             }
             else // 两个都按下 或 只按了另一个键
             {
-                if(Input.GetMouseButton(0) && Input.GetMouseButton(1))
+                
+                if (Input.GetMouseButton(0) && Input.GetMouseButton(1))
                     Debug.Log("左右键都按下");
                 
                 isAllRelease = false; // 进入施加向前力的状态

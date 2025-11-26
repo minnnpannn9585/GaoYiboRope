@@ -11,6 +11,7 @@ public class RaceEndCheck : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             reachEnd = true;
+            GetComponent<AudioSource>().Play();
         }
     }
 }
